@@ -4,16 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Product AR Experience</title>
-    <!-- FIX: Pointing to the actual model-viewer script library -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #f7f7f7; }
         model-viewer { width: 100%; height: 100%; }
+
+        #ar-button {
+            background-color: #2563EB;
+            color: white;
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            padding: 16px 36px;
+            font-family: 'Segoe UI', Roboto, Helvetica Neue, sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        #ar-button:active {
+            background-color: #1D4ED8;
+            transform: translateX(-50%) scale(0.97);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 99, 235, 0.7); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- FIX: Using your exact model file names 'roshn.glb' and 'roshn.usdz' -->
     <model-viewer 
         src="roshn.glb" 
         ios-src="roshn.usdz" 
@@ -22,6 +51,11 @@
         camera-controls 
         auto-rotate 
         shadow-intensity="1">
+
+        <button slot="ar-button" id="ar-button">
+            View in Your Space
+        </button>
+
     </model-viewer>
 
 </body>
